@@ -6,7 +6,7 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 
 interface Column {
-  field: string;
+  field: any;
   header: string;
 }
 
@@ -21,11 +21,11 @@ export class ClientListComponent {
 
   clients$: Observable<Client[]>;
   columns: Column[] = [
-    { field: 'id', header: 'ID' },
-    { field: 'name', header: 'Name' },
+    // { field: 'id', header: 'ID' },
+    { field: 'name', header: 'Nome' },
     { field: 'email', header: 'Email' },
-    { field: 'phone', header: 'Phone' },
-    { field: 'active', header: 'Active' },
+    { field: 'phone', header: 'Telefono' },
+    { field: 'active', header: 'Attivo' },
   ];
 
   constructor(private clientService: ClientService) {
