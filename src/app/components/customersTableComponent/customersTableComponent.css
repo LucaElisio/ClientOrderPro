@@ -1,0 +1,9 @@
+
+
+
+.selected-row {
+    background-color: #18181bad !important; 
+    border-color: #18181bad !important;
+    border-block-end-color: #18181bad !important;
+    border-block-start-color: #18181bad !important;
+}

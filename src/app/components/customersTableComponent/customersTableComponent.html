@@ -1,0 +1,57 @@
+<h1>Tabella clienti</h1>
+
+
+<main>
+    <p-table [value]="(customers$ | async) ?? []" [columns]="columns" selectionMode="single"
+        [(selection)]="selectedCustomer" [metaKeySelection]="true" dataKey="id">
+        <ng-template #header let-columns>
+            <tr>
+                @for (col of columns; track col) {
+                <th>
+                    {{ col.header }}
+                </th>
+                }
+            </tr>
+        </ng-template>
+        <ng-template #body let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData" (click)="onRowClick(rowData)"
+                [class.selected-row]="rowData === selectedCustomer">
+
+                @for (col of columns; track col) {
+                <td>
+                    @if (col.field === 'active') {
+                    @if(rowData[col.field]){
+                    <span><i class="pi pi-check"></i></span>
+                    } @else {
+                    <span><i class="pi pi-times"></i></span>
+                    }
+                    } @else {
+                    {{ rowData[col.field] }}
+                    }
+                </td>
+                }
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <p-dialog header="Edit Profile" [modal]="true" [(visible)]="isDialogVisible" [style]="{ width: '25rem' }">
+        <span class="mb-4">Update your information</span>
+        <div class="p-field mb-3">
+            <label for="name" class="block mb-2">Nome</label>
+            <input pInputText id="name" class="flex-auto" autocomplete="off" [value]="selectedCustomer?.name" />
+        </div>
+        <div class="flex items-center">
+            <label for="email" class="">Email</label>
+            <input pInputText id="email" class="flex-auto" autocomplete="off" [value]="selectedCustomer?.email" />
+        </div>
+        <div class="flex items-center">
+            <label for="phone" class="">Telefono</label>
+            <input pInputText id="phone" class="flex-auto" autocomplete="off" [value]="selectedCustomer?.phone" />
+        </div>
+        <div class="flex justify-end">
+            <!-- <p-button label="Cancel" severity="secondary" (click)="onCancel" [(visible)]=false" /> -->
+            <p-button label="Save" (click)="onSave()" />
+        </div>
+    </p-dialog>
+
+</main>

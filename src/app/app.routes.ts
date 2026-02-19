@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ClientListComponent } from './components/client-list-component/client-list-component';
+import { CustomersTableComponent } from './components/customersTableComponent/customersTableComponent';
 
 export const routes: Routes = [
-    {path: 'clients', component: ClientListComponent}
+    {path: 'customers', component: CustomersTableComponent}
 ];
